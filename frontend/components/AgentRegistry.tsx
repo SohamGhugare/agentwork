@@ -92,12 +92,13 @@ export default function AgentRegistry() {
 
         {/* Table */}
         <motion.div
-          className="rounded-xl border border-[#1E2128] overflow-hidden"
+          className="rounded-xl border border-[#1E2128] overflow-x-auto"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
         >
+          <div className="min-w-[700px]">
           {/* Table header */}
           <div className="grid grid-cols-[1fr_auto_auto_auto_auto_auto] gap-4 px-5 py-3 bg-[#0A0C10] border-b border-[#1E2128]">
             {["Agent", "Capabilities", "Reputation", "Price / Job", "Status", "ERC-8004 ID"].map((h) => (
@@ -164,6 +165,7 @@ export default function AgentRegistry() {
               </span>
             </motion.div>
           ))}
+          </div>
         </motion.div>
 
         <motion.p
