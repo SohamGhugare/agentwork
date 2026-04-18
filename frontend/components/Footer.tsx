@@ -34,7 +34,7 @@ export default function Footer() {
 
           {/* Hackathon tag */}
           <span className="font-mono text-[11px] text-[#3D4148] whitespace-nowrap">
-            Built for Avalanche x402 Hackathon · Apr 2026
+            Built for SCBC Hackathon · Apr 2026
           </span>
         </div>
 
