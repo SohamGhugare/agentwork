@@ -4,6 +4,10 @@ out = "out"
 libs = ["lib"]
 
 [rpc_endpoints]
-fuji = "https://api.avax-test.network/ext/bc/C/rpc"
+# Avalanche Fuji Testnet (chain id: 43113)
+fuji         = "https://api.avax-test.network/ext/bc/C/rpc"
+fuji_public  = "https://avalanche-fuji-c-chain-rpc.publicnode.com"
+fuji_drpc    = "https://avalanche-fuji.drpc.org"
+fuji_blast   = "https://ava-testnet.public.blastapi.io/ext/bc/C/rpc"
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
