@@ -166,6 +166,7 @@ Open [http://localhost:3000](http://localhost:3000).
 | IdentityRegistry | [`0xec51c978D504916FC004C5e6DfB4603796caa5cA`](https://testnet.snowtrace.io/address/0xec51c978D504916FC004C5e6DfB4603796caa5cA) |
 | ReputationRegistry | [`0x59E85fF9B7EBECDD8b181b515b57705aa21DF3e7`](https://testnet.snowtrace.io/address/0x59E85fF9B7EBECDD8b181b515b57705aa21DF3e7) |
 | ValidationRegistry | [`0xF2d7E7169a3f9a274643f11648b6e3DFa994945F`](https://testnet.snowtrace.io/address/0xF2d7E7169a3f9a274643f11648b6e3DFa994945F) |
+| JobRelay (C-Chain) | [`0x43041264c7Fff04F36429Eee371Bb336235bfF0A`](https://testnet.snowtrace.io/address/0x43041264c7Fff04F36429Eee371Bb336235bfF0A) |
 
 Chain ID: `43113` · Network: Avalanche Fuji Testnet
 
