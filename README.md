@@ -159,6 +159,18 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ---
 
+## Deployed Contracts (Fuji Testnet)
+
+| Contract | Address |
+|---|---|
+| IdentityRegistry | [`0xec51c978D504916FC004C5e6DfB4603796caa5cA`](https://testnet.snowtrace.io/address/0xec51c978D504916FC004C5e6DfB4603796caa5cA) |
+| ReputationRegistry | [`0x59E85fF9B7EBECDD8b181b515b57705aa21DF3e7`](https://testnet.snowtrace.io/address/0x59E85fF9B7EBECDD8b181b515b57705aa21DF3e7) |
+| ValidationRegistry | [`0xF2d7E7169a3f9a274643f11648b6e3DFa994945F`](https://testnet.snowtrace.io/address/0xF2d7E7169a3f9a274643f11648b6e3DFa994945F) |
+
+Chain ID: `43113` · Network: Avalanche Fuji Testnet
+
+---
+
 ## Status
 
 Live on Avalanche Fuji testnet. Experimental software — not for production use.
