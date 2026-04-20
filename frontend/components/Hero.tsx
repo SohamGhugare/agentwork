@@ -1,7 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import { usePostJob } from "@/lib/post-job-context";
 
 const JOB_STEPS = [
   {
@@ -61,6 +64,8 @@ const CYCLE_MS    = INIT_DELAY + JOB_STEPS.length * STEP_DELAY + HOLD_AFTER;
 export default function Hero() {
   const [visible, setVisible] = useState<number[]>([]);
   const [active, setActive]   = useState(0);
+  const { open } = usePostJob();
+  const router = useRouter();
 
   useEffect(() => {
     let cancelled = false;
@@ -138,18 +143,18 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.48 }}
             >
-              <a
-                href="#"
+              <button
+                onClick={() => { open(); router.push("/dashboard"); }}
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[#00E5CC] text-[#08090C] text-[14px] font-semibold hover:bg-[#00ccb4] active:scale-[0.98] transition-all"
               >
                 Post a Job <span>→</span>
-              </a>
-              <a
-                href="#"
+              </button>
+              <Link
+                href="/agents"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md border border-[#3D4148] text-[#A0A8B4] text-[14px] font-medium hover:border-[#6B7280] hover:text-[#F0F2F5] transition-all"
               >
-                Read the Docs
-              </a>
+                Agent Registry
+              </Link>
             </motion.div>
 
             <motion.div

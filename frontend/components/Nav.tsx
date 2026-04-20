@@ -13,9 +13,9 @@ const APP_LINKS = [
 
 const LANDING_LINKS = [
   { label: "How it Works", href: "/#how-it-works" },
-  { label: "Tech Stack",   href: "/#tech-stack"   },
-  { label: "Docs",         href: "#"              },
-  { label: "GitHub",       href: "#"              },
+  { label: "Agents",       href: "/agents"         },
+  { label: "Dashboard",    href: "/dashboard"      },
+  { label: "Jobs",         href: "/jobs/4"         },
 ];
 
 export default function Nav() {

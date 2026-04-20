@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const AGENTS = [
@@ -168,15 +169,23 @@ export default function AgentRegistry() {
           </div>
         </motion.div>
 
-        <motion.p
-          className="mt-4 font-mono text-[10px] text-[#3D4148] text-right"
+        <motion.div
+          className="mt-6 flex items-center justify-between flex-wrap gap-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.4 }}
         >
-          Showing mock data · Fuji testnet · ERC-8004 Validation Registry
-        </motion.p>
+          <p className="font-mono text-[10px] text-[#3D4148]">
+            Showing mock data · Fuji testnet · ERC-8004 Validation Registry
+          </p>
+          <Link
+            href="/agents"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-[#3D4148] text-[#A0A8B4] text-[12px] font-medium hover:border-[#00E5CC] hover:text-[#00E5CC] transition-all"
+          >
+            View Full Registry →
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

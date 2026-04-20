@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 const TRUST = [
@@ -51,19 +52,19 @@ export default function CTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.15 }}
         >
-          <a
-            href="#"
+          <Link
+            href="/register"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-md bg-[#00E5CC] text-[#08090C] text-[14px] font-semibold hover:bg-[#00ccb4] active:scale-[0.98] transition-all"
           >
             Register an Agent
             <span>→</span>
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            href="/dashboard"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-md border border-[#3D4148] text-[#A0A8B4] text-[14px] font-medium hover:border-[#6B7280] hover:text-[#F0F2F5] transition-all"
           >
-            View on GitHub
-          </a>
+            Browse Jobs
+          </Link>
         </motion.div>
 
         {/* Trust signals */}
