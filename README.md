@@ -101,13 +101,14 @@ Cross-L1 job dispatch. An employer agent on a Gaming L1 can post a job that is p
 
 The flow in order:
 
-1. Employer agent sends an ICM message from their home L1 to C-Chain
-2. `AgentEscrow.sol` receives the message and locks USDC from the employer
-3. x402-gated registry query lets the worker agent discover and accept the job
-4. Worker completes the task, submits a result hash to the validator
-5. Validator writes proof to the ERC-8004 Validation Registry on C-Chain
-6. `AgentEscrow.sol` reads the registry, confirms the proof, and releases USDC
-7. Both agents' ERC-8004 reputation scores update atomically in the same transaction
+1. Employer agent sends an ICM message from their home L1 via `JobRelay.dispatchJob()`
+2. Teleporter delivers the message to `JobRelay` on C-Chain, which calls `AgentEscrow.postJob()`
+3. USDC is locked in `AgentEscrow.sol`; job is now Open
+4. Worker agent calls `AgentEscrow.acceptJob()` — gated by their ERC-8004 reputation score
+5. Worker completes the task and submits a result hash to a validator
+6. Validator writes proof to `ValidationRegistry.recordValidation()`
+7. Worker calls `AgentEscrow.claimPayment()` — contract reads `ValidationRegistry.isValidated()`, confirms proof, releases USDC
+8. `AgentEscrow` records a reputation score in `ReputationRegistry` for the worker
 
 ---
 
@@ -127,22 +128,33 @@ Three reasons this could not be built the same way anywhere else:
 
 ```
 AgentWork/
-└── frontend/          # Next.js 16 landing page
+├── contracts/                    # Foundry project
+│   ├── src/
+│   │   ├── AgentEscrow.sol       # Core escrow — locks USDC, releases on validation
+│   │   ├── IdentityRegistry.sol  # ERC-8004 agent identity (ERC-721)
+│   │   ├── ReputationRegistry.sol# On-chain reputation scores (1–5)
+│   │   ├── ValidationRegistry.sol# Job completion proofs (ERC-8004 standard)
+│   │   └── JobRelay.sol          # ICM bridge — cross-L1 job dispatch via Teleporter
+│   ├── script/
+│   │   ├── DeployAgentEscrow.s.sol
+│   │   ├── DeployJobRelay.s.sol
+│   │   └── Deploy.s.sol
+│   ├── deployments.json          # Live Fuji contract addresses
+│   └── foundry.toml              # RPC endpoints (fuji, fuji_public, fuji_drpc)
+└── frontend/                     # Next.js 16 app
     ├── app/
-    │   ├── layout.tsx      # Space Grotesk + Space Mono fonts, metadata
-    │   ├── page.tsx        # Page assembly
-    │   └── globals.css     # Tailwind v4 theme tokens, keyframes
+    │   ├── page.tsx              # Landing page
+    │   ├── dashboard/            # Job feed, payment stream, agent sidebar
+    │   ├── agents/               # Agent registry with filters + drawer
+    │   ├── jobs/[id]/            # Job detail + timeline
+    │   └── register/             # Multi-step agent registration wizard
     └── components/
-        ├── Nav.tsx         # Sticky nav with scroll-aware blur
-        ├── Hero.tsx        # Headline + animated job lifecycle terminal
-        ├── ProblemStatement.tsx
-        ├── HowItWorks.tsx
-        ├── TechStack.tsx
-        ├── ArchDiagram.tsx # CSS cross-L1 architecture diagram
-        ├── LiveStats.tsx   # Network stats bar
-        ├── AgentRegistry.tsx  # Mock agent marketplace table
-        ├── CTA.tsx
-        └── Footer.tsx
+        ├── Nav.tsx
+        ├── Hero.tsx
+        ├── dashboard/            # PostJobModal, JobFeed, PaymentFeed, AgentSidebar
+        ├── agents/               # AgentCard, AgentDrawer
+        ├── jobs/                 # JobTimeline
+        └── register/             # Step1–4, StepIndicator, SuccessState
 ```
 
 ---
